@@ -1,0 +1,59 @@
+<?php $__env->startSection('form'); ?>
+<?php echo Form::open(['url' => $url, 'method' => $method]); ?>
+
+    <fieldset>
+        <div class="form-group">
+            <?php echo Form::label('title', 'Title:', ['class' => 'col-lg-2 control-label text-right']); ?>
+
+            <div class="col-lg-10">
+                <?php echo Form::text('title', isset($category) ? $category -> title : null, ['id' => 'title', 'placeholder' => 'Title', 'class'=> 'form-control']); ?>
+
+            </div>
+            <?php if($errors -> first('title') != ''): ?>
+            <div class="clear">&nbsp;</div>
+            <div class="col-lg-offset-2 col-lg-10">
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo e($errors -> first('title')); ?>
+
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+        <div class="clear">&nbsp;</div>
+
+        <div class="form-group">
+            <?php echo Form::label('locale', 'Locale:', ['class' => 'col-lg-2 control-label text-right']); ?>
+
+            <div class="col-lg-10">
+                <?php echo Form::text('locale', isset($category) ? $category -> title : null, ['id' => 'locale', 'placeholder' => 'Locale(Example: nl, en, bg)', 'class'=> 'form-control']); ?>
+
+            </div>
+            <?php if($errors -> first('title') != ''): ?>
+            <div class="clear">&nbsp;</div>
+            <div class="col-lg-offset-2 col-lg-10">
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo e($errors -> first('title')); ?>
+
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+        <div class="clear">&nbsp;</div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <?php echo Form::button('Reset', array('type' => 'reset','class' => 'btn btn-default')); ?>
+
+                <?php echo Form::submit('Save', array('class' => 'btn btn-primary')); ?>
+
+                <?php echo HTML::link('panel/products/categories', 'go back', ['class' => 'btn btn-link pull-right']); ?>
+
+            </div>
+        </div>
+    </fieldset>
+<?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('panel.category.create-master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

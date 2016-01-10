@@ -1,0 +1,18 @@
+<?php $__env->startSection('page-wrapper'); ?>
+
+    <?php if($helper_message): ?>
+	<div>&nbsp;</div>
+	<div class="alert alert-info">
+		<h3 class="help-title"><?php echo e(trans('rapyd::rapyd.help')); ?></h3>
+		<?php echo e($helper_message); ?>
+
+	</div>
+    <?php endif; ?>
+
+    <p>
+        <?php echo $edit; ?>
+
+    </p>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('panelViews::mainTemplate', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

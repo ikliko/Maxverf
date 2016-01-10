@@ -1,0 +1,190 @@
+<?php $__env->startSection('container'); ?>
+<div class="container margin-top">
+ <div class="row">
+
+<div class="col-sm-12">
+
+			<ul class="nav nav-tabs-order">
+			  <li class="active"><a data-toggle="tab" href="#particulier">order als  particulier</a></li>
+			  <li><a data-toggle="tab" href="#bedrijf">order als bedrijf</a></li>
+			</ul>
+			
+			<div class="tab-content">
+
+			  <div id="particulier" class="tab-pane fade in active">
+
+					<div class="panel panel-primary">
+
+						<div class="panel-body">
+
+							<?php echo Form::open(['url' => 'payments/method/ondelivery']); ?>
+
+
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('first_name', 'Voornaam:');; ?>
+
+								<?php echo Form::text('first_name', null, array('id' => 'first_name', 'class' => 'form-control', 'placeholder' => 'Voornaam'));; ?>
+
+							</div>
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('last_name', 'Achteernaam:');; ?>
+
+								<?php echo Form::text('last_name', null, array('id' => 'last_name', 'class' => 'form-control', 'placeholder' => 'Achteernaam'));; ?>
+
+							</div>
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('email', 'Email:');; ?>
+
+								<?php echo Form::text('email', null, array('id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email'));; ?>
+
+							</div>
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('phone', 'Telefoon:');; ?>
+
+								<?php echo Form::text('phone', null, array('id' => 'phone', 'class' => 'form-control', 'placeholder' => 'Telefoon'));; ?>
+
+							</div>
+							
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('city', 'City:');; ?>
+
+								<?php echo Form::text('city', null, array('id' => 'city', 'class' => 'form-control', 'placeholder' => 'City'));; ?>
+
+							</div>
+
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('address', 'Address:');; ?>
+
+								<?php echo Form::text('address', null, array('id' => 'address', 'class' => 'form-control', 'placeholder' => 'Address'));; ?>
+
+							</div>
+
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('comment', 'Opmerkingen:');; ?>
+
+								<?php echo Form::textarea('comment', null, array('id' => 'comment', 'class' => 'form-control', 'rows' => 4, 'cols' => 50, 'placeholder' => 'Als u wilt meer info..'));; ?>
+
+							</div>
+
+
+							<div class="col-xs-12 text-right">
+								<button class="btn btn-primary">Bevestiging</button>
+							</div>
+
+							<?php echo Form::close(); ?>
+
+
+						</div>
+
+					</div>
+
+			  </div>
+			  
+			  
+			  
+			  <div id="bedrijf" class="tab-pane fade">
+			  
+			  
+					<div class="panel panel-primary">
+
+						<div class="panel-body">
+
+							<?php echo Form::open(['url' => 'payments/method/ondelivery/firm']); ?>
+
+
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('firm', 'Bedrijfsnaam:');; ?>
+
+								<?php echo Form::text('firm', null, array('id' => 'firm', 'class' => 'form-control', 'placeholder' => 'Bedrijfsnaam'));; ?>
+
+							</div>
+
+                            <div class="form-group col-sm-6">
+                                <?php echo Form::label('first_name', 'Voornaam:');; ?>
+
+                                <?php echo Form::text('first_name', null, array('id' => 'first_name', 'class' => 'form-control', 'placeholder' => 'Voornaam'));; ?>
+
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <?php echo Form::label('last_name', 'Achteernaam:');; ?>
+
+                                <?php echo Form::text('last_name', null, array('id' => 'last_name', 'class' => 'form-control', 'placeholder' => 'Achteernaam'));; ?>
+
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <?php echo Form::label('email', 'Email:');; ?>
+
+                                <?php echo Form::text('email', null, array('id' => 'email', 'class' => 'form-control', 'placeholder' => 'Email'));; ?>
+
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <?php echo Form::label('phone', 'Telefoon:');; ?>
+
+                                <?php echo Form::text('phone', null, array('id' => 'phone', 'class' => 'form-control', 'placeholder' => 'Telefoon'));; ?>
+
+                            </div>
+
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('kvk', 'KVK nummer:');; ?>
+
+								<?php echo Form::text('kvk', null, array('id' => 'kvk', 'class' => 'form-control', 'placeholder' => 'KVK nummer'));; ?>
+
+							</div>
+
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('btw', 'BTW nummer:');; ?>
+
+								<?php echo Form::text('btw', null, array('id' => 'btw', 'class' => 'form-control', 'placeholder' => 'BTW nummer'));; ?>
+
+							</div>
+							
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('city', 'City:');; ?>
+
+								<?php echo Form::text('city', null, array('id' => 'city', 'class' => 'form-control', 'placeholder' => 'City'));; ?>
+
+							</div>
+
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('address', 'Bedrijfsadres:');; ?>
+
+								<?php echo Form::text('address', null, array('id' => 'address', 'class' => 'form-control', 'placeholder' => 'Bedrijfsadres'));; ?>
+
+							</div>
+
+							<div class="form-group col-sm-6">
+								<?php echo Form::label('comment', 'Opmerkingen:');; ?>
+
+								<?php echo Form::textarea('comment', null, array('id' => 'comment', 'class' => 'form-control', 'rows' => 4, 'cols' => 50, 'placeholder' => 'Als u wilt meer info..'));; ?>
+
+							</div>
+
+
+							<div class="col-xs-12 text-right">
+								<button class="btn btn-primary">Bevestiging</button>
+							</div>
+
+							<?php echo Form::close(); ?>
+
+
+						</div>
+
+					</div>
+  
+			  </div>
+			
+			</div>
+	
+
+
+
+</div>
+
+
+   </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

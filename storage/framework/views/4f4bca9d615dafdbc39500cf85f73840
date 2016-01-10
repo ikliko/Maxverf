@@ -1,0 +1,59 @@
+<style>
+    .cat-no-childs {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+</style>
+<ul class="cd-accordion-menu">
+    <?php foreach($categories as $category): ?>
+    <?php if(count($category -> childs)): ?>
+    <li class="has-children">
+        <input type="checkbox" name ="group-<?php echo e($category -> id); ?>" id="group-<?php echo e($category -> id); ?>" <?php if($category -> id === $current_category): ?> checked <?php endif; ?>>
+        <label for="group-<?php echo e($category -> id); ?>"><?php echo e($category -> title); ?></label>
+
+        <ul>
+            <li><a href="<?php echo e(url('shop/category/' . $category -> id)); ?>"><?php echo e($category -> title); ?></a></li>
+            <?php foreach($category -> childs as $child): ?>
+            <?php if(count($child -> childs)): ?>
+            <li class="has-children">
+                <input type="checkbox" name ="group-<?php echo e($child -> id); ?>" id="group-<?php echo e($child -> id); ?>">
+                <label for="group-<?php echo e($child -> id); ?>"><?php echo e($child -> title); ?></label>
+
+                <ul>
+                    <li><a href="<?php echo e(url('shop/category/' . $child -> id)); ?>"><?php echo e($child -> title); ?></a></li>
+                    <?php foreach($child -> childs as $gChild): ?>
+                    <?php if(count($gChild -> childs)): ?>
+                    <li class="has-children">
+                        <input type="checkbox" name ="group-<?php echo e($gChild -> id); ?>" id="group-<?php echo e($gChild -> id); ?>">
+                        <label for="group-<?php echo e($gChild -> id); ?>"><?php echo e($gChild -> title); ?></label>
+
+                        <ul>
+                            <li><a href="<?php echo e(url('shop/category/' . $gChild -> id)); ?>"><?php echo e($gChild -> title); ?></a></li>
+                            <?php foreach($gChild -> childs as $ggChilds): ?>
+                            <ul>
+                                <li><a href="<?php echo e(url('shop/category/' . $ggChild -> id)); ?>"><?php echo e($ggChild -> title); ?></a></li>
+                            </ul>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
+                    <?php else: ?>
+                    <li><a href="<?php echo e(url('shop/category/' . $gChild -> id)); ?>"><?php echo e($gChild -> title); ?></a></li>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+            <?php else: ?>
+            <li><a href="<?php echo e(url('shop/category/' . $child -> id)); ?>"><?php echo e($child -> title); ?></a></li>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </li>
+    <?php else: ?>
+    <li class="has-children">
+        <a href="<?php echo e(url('shop/category/' . $category -> id)); ?>" class="cat-no-childs"><label><?php echo e($category -> title); ?></label></a>
+    </li>
+    <?php endif; ?>
+    <?php endforeach; ?>
+</ul> <!-- cd-accordion-menu -->
+<!--/category-products-->

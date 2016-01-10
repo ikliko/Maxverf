@@ -1,0 +1,29 @@
+<?php $__env->startSection('page-wrapper'); ?>
+<style>
+    .clear {
+        clear: both;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    .order {
+        font-size: 20px;
+    }
+</style>
+<h2 class="text-center">Order: <strong><?php echo e($order -> first_name . ' ' . $order -> last_name); ?></strong></h2>
+<hr/>
+<?php echo Form::open(['url' => '', 'class' => 'col-lg-4']); ?>
+
+<?php echo Form::submit('Decline', array('class' => 'btn btn-primary form-control'));; ?>
+
+<?php echo Form::close(); ?>
+
+
+<?php echo Form::open(['url' => '', 'class' => 'col-lg-4']); ?>
+
+<?php echo Form::submit('Accept', array('class' => 'btn btn-default form-control'));; ?>
+
+<?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('panelViews::mainTemplate', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

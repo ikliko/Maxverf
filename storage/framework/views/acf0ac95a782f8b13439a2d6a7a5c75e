@@ -1,0 +1,64 @@
+<?php if(isset($category)): ?>
+<?php foreach($category -> childs as $child): ?>
+<?php foreach($child -> childs as $gChild): ?>
+<?php foreach($gChild -> childs as $ggChild): ?>
+<?php foreach($ggChild -> products as $ggProduct): ?>
+<div class="col-sm-6">
+    <div class="product-col">
+        <div class="col-xs-9">
+            <h2><?php echo e($ggProduct -> name); ?></h2>
+            <p class="hidden-sm"><?php echo e($ggProduct -> intro); ?></p>
+            <a href="<?php echo e(url('shop/' . $ggProduct -> id)); ?>" class="btn btn-kopen"><i class="fa fa-info"></i> Details</a>
+            <?php if($ggProduct -> price): ?>
+            <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
+
+            <?php echo Form::hidden('product_id', $ggProduct -> id); ?>
+
+            <button type="submit" class="btn btn-kopen"> <i class="fa fa-shopping-cart"></i> Kopen </button>
+            <?php echo Form::close(); ?>
+
+            <?php endif; ?>
+        </div>
+        <div class="col-xs-3 no-padding">
+            <?php if($ggProduct -> price): ?>
+            <div class="price-product"><?php echo e($ggProduct -> price . config('shop.currency')); ?></div>
+            <?php endif; ?>
+            <?php echo HTML::image($ggProduct -> image_normal); ?>
+
+        </div>
+        <div class="clr"></div>
+    </div>
+</div>
+<?php endforeach; ?>
+<?php endforeach; ?>
+<?php endforeach; ?>
+<?php foreach($child -> products as $ggProduct): ?>
+<div class="col-sm-6">
+    <div class="product-col">
+        <div class="col-xs-9">
+            <h2><?php echo e($ggProduct -> name); ?></h2>
+            <p class="hidden-sm"><?php echo e($ggProduct -> intro); ?></p>
+            <a href="<?php echo e(url('shop/' . $ggProduct -> id)); ?>" class="btn btn-kopen"><i class="fa fa-info"></i> Details</a>
+            <?php if($ggProduct -> price): ?>
+            <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
+
+            <?php echo Form::hidden('product_id', $ggProduct -> id); ?>
+
+            <button type="submit" class="btn btn-kopen"> <i class="fa fa-shopping-cart"></i> Kopen </button>
+            <?php echo Form::close(); ?>
+
+            <?php endif; ?>
+        </div>
+        <div class="col-xs-3 no-padding">
+            <?php if($ggProduct -> price): ?>
+            <div class="price-product"><?php echo e($ggProduct -> price . config('shop.currency')); ?></div>
+            <?php endif; ?>
+            <?php echo HTML::image($ggProduct -> image_normal); ?>
+
+        </div>
+        <div class="clr"></div>
+    </div>
+</div>
+<?php endforeach; ?>
+<?php endforeach; ?>
+<?php endif; ?>

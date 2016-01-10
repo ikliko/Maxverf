@@ -1,0 +1,11 @@
+<?php if(isset($category)): ?>
+<?php foreach($category -> childs as $child): ?>
+<?php echo $__env->make('sections.category-childs-products', array('catChild' => $child), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php foreach($child -> childs as $gChild): ?>
+<?php echo $__env->make('sections.category-childs-products', array('catChild' => $child), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php foreach($gChild -> childs as $ggChild): ?>
+<?php echo $__env->make('sections.category-childs-products', array('catChild' => $child), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php endforeach; ?>
+<?php endforeach; ?>
+<?php endforeach; ?>
+<?php endif; ?>

@@ -1,0 +1,71 @@
+<?php $__env->startSection('page-wrapper'); ?>
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <h1 class="page-header"><?php echo e(\Lang::get('panel::fields.dashboard')); ?></h1>
+                    <div class="icon-bg ic-layers"></div>
+                </div>
+                            
+            </div>
+            <!-- /.row -->
+            <div class="row box-holder">
+                
+                <?php if(is_array(\Serverfireteam\Panel\Link::returnUrls())): ?>
+                    <?php foreach(Serverfireteam\Panel\libs\dashboard::create() as $box): ?>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel ">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-7 title">
+                                        <?php echo e($box['title']); ?>
+
+                                    </div>
+                                    <div class="col-xs-5 text-right">
+                                        <div class="huge"><?php echo e($box['count']); ?></div>
+                                        <div></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="panel-footer">
+
+                                     <a href='<?php echo e($box['showListUrl']); ?>' class="pull-left"><?php echo e(\Lang::get('panel::fields.showList')); ?> <i class="icon ic-chevron-right"></i></a>
+                                    <div class="pull-right"> <a class="add " href="<?php echo e($box['addUrl']); ?>"><?php echo e(\Lang::get('panel::fields.Add')); ?>  </a></div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+
+            </div>
+            <div class="row hide update">
+                <div class="alert alert-warning" role="alert">
+                    If you see this message contact with your support. Your panel have update.
+                </div>
+            </div>
+
+<script>
+    $(function(){
+        var color = ['primary','green','orange','red','purple','green2','blue2','yellow'];
+        var pointer = 0;
+        $('.panel').each(function(){
+            if(pointer > color.length) pointer = 0;
+            $(this).addClass('panel-'+color[pointer]);
+            $(this).find('.pull-right .add').addClass('panel-'+color[pointer]);
+            pointer++;
+        });
+        // check for update of laravelpanel 
+        $.getJSON( "http://api.laravelpanel.com/checkupdate/<?php echo e($version); ?>", function( data ) {
+          if(data.needUpdate){
+//            $(".update a").text(data.text);
+            $(".update").removeClass('hide');
+          }
+        })
+    });
+</script>
+<?php $__env->stopSection(); ?>            
+
+<?php echo $__env->make('panelViews::mainTemplate', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

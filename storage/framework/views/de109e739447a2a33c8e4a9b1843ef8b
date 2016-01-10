@@ -1,0 +1,25 @@
+<?php $__env->startSection('page-wrapper'); ?>
+<style>
+    .text-panel,
+    .text-panel:active,
+    .text-panel:hover,
+    .text-panel:focus{
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+</style>
+<h1 class="text-center">Error 404: <?php echo e(isset($message) ? $message : 'Page was not found'); ?></h1>
+<?php if(isset($links)): ?>
+<?php foreach($links as $link): ?>
+<h3>
+    <?php if($link['url']): ?>
+    <a href="<?php echo e(url($link['url'])); ?>" class="btn btn-link"><?php echo e($link['text']); ?></a>
+    <?php else: ?>
+    <p class="btn text-panel" style="cursor: auto;"><?php echo e($link['text']); ?></p>
+    <?php endif; ?>
+</h3>
+<?php endforeach; ?>
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('panelViews::mainTemplate', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

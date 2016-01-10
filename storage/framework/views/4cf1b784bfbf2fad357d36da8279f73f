@@ -1,0 +1,72 @@
+<?php $__env->startSection('page-wrapper'); ?>
+<style>
+    .clear {
+        clear: both;
+    }
+    .bold {
+        font-weight: bold;
+    }
+</style>
+<h2 class="text-center">Colors (Products)</h2>
+<?php echo HTML::link('/panel/products/colors/create', 'Add', ['class' => 'btn btn-primary btn-sm pull-right']); ?>
+
+<div class="clear">&nbsp;</div>
+<hr/>
+<?php if(isset($table) && count($table)): ?>
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Color</th>
+        <th>Product/size</th>
+        <th>Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($table as $color): ?>
+    <tr>
+        <td><?php echo e($color -> id); ?></td>
+        <td><?php echo e($color -> color); ?></td>
+        <td><?php echo $color -> product ? '<span class="bold">Product:</span> ' . $color -> product -> name : '<span class="bold">Size:</span> ' . $color -> size -> size . ' of <span class="bold">product</span> ' . $color -> size -> product -> name; ?></td>
+        <td>
+            <div>
+                <a title="Show" href="" class="hidden"><span class="glyphicon glyphicon-list-alt"> </span></a>
+                <a class="text-warning" title="Modify" href="<?php echo e(url('panel/products/colors/' . $color -> id . '/edit')); ?>"><span class="fa fa-edit"> </span></a>
+                <a class="delete text-danger" title="Delete" data-id=""><span class="glyphicon glyphicon-trash"> </span></a>
+            </div>
+            <div class="hidden">
+                <?php echo Form::open(array('url' => 'panel/products/colors/' . $color -> id, 'method' => 'delete')); ?>
+
+                <p>Are you sure you want to delete category "<?php echo e($color -> name); ?>"?</p>
+                <?php echo Form::button('Не', array('class' => 'btn btn-default btn-sm cancel')); ?>
+
+                <?php echo Form::submit('Да', array('class' => 'btn btn-primary btn-sm')); ?>
+
+                <?php echo Form::close(); ?>
+
+            </div>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<?php else: ?>
+No products added yet.
+<?php endif; ?>
+<script>
+    $('.delete').on('click', function(evt) {
+        var parent = evt.currentTarget.parentElement,
+            nextElement = parent.nextElementSibling;
+        $(parent).addClass('hidden');
+        $(nextElement).removeClass('hidden');
+    });
+
+    $('.cancel').on('click', function(evt) {
+        var parent = evt.currentTarget.parentElement.parentElement,
+            nextElement = parent.previousElementSibling;
+        $(parent).addClass('hidden');
+        $(nextElement).removeClass('hidden');
+    });
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('panelViews::mainTemplate', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

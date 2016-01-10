@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?php echo e(isset($description) ? $description : ''); ?>">
+    <meta name="author" content="">
+    <title>Maxverf<?php echo e(isset($title) ? ' | ' . $title : ''); ?></title>
+    <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/main.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/responsive.css')); ?>" rel="stylesheet">
+</head><!--/head-->
+<body ng-app="maxverf" ng-cloack>
+<?php echo $__env->yieldContent('body'); ?>
+<script src="<?php echo e(asset('js/jquery.js')); ?>"></script>
+<script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
+<script src="<?php echo e(asset('js/modernizr.custom.js')); ?>"></script>
+<script src="<?php echo e(asset('js/classie.js')); ?>"></script>
+<script src="<?php echo e(asset('js/main.js')); ?>"></script>
+<script src="<?php echo e(asset('scripts/libs/angular.min.js')); ?>"></script>
+<script src="<?php echo e(asset('scripts/libs/angular-resource.min.js')); ?>"></script>
+<script src="<?php echo e(asset('scripts/app.js')); ?>"></script>
+<script src="<?php echo e(asset('scripts/controllers/sizeController.js')); ?>"></script>
+<script src="<?php echo e(asset('scripts/controllers/searchController.js')); ?>"></script>
+<script src="<?php echo e(asset('scripts/services/sizeService.js')); ?>"></script>
+<script src="<?php echo e(asset('scripts/services/searchService.js')); ?>"></script>
+</body>
+</html>

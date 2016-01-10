@@ -1,0 +1,51 @@
+<?php $__env->startSection('container'); ?>
+<div class="container">
+
+    <div class="row">
+
+
+        <div class="col-md-12">
+
+            <div class="payment-details">
+                <?php echo Form::open(array('url' => 'payments/method')); ?>
+
+
+                <h2><?php echo app('translator')->get('fields.order.title'); ?>:</h2>
+
+                <div class="payment-detail">
+                    <input type="radio" name="payment" id="payment1" value="card">
+
+                    <label for="payment1">
+                        <div class="col-sm-8 col-xs-12 text-left-lg text-left-md text-left-xs">
+                            <h4><?php echo app('translator')->get('fields.order.card.title'); ?></h4>
+                            <p><?php echo app('translator')->get('fields.order.card.description.0'); ?></p>
+                            <p><?php echo app('translator')->get('fields.order.card.description.1'); ?></p>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12 payment-img text-right-lg text-right-md text-right-xs">
+                            <img src="<?php echo e(url('images/cards/cards.png')); ?>">
+                        </div>
+
+                    </label>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12 text-right-lg text-right-md text-right-sm text-right-xs no-padding payment-details-btn">
+                    <a href="<?php echo e(url('shop')); ?>" class="btn"><?php echo app('translator')->get('fields.order.back_btn'); ?></a>
+                    <button type="submit" class="btn"><?php echo app('translator')->get('fields.order.continue_btn'); ?></button>
+                </div>
+
+                <?php echo Form::close(); ?>
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

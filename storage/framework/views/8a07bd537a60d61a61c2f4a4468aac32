@@ -1,0 +1,36 @@
+<div class="col-sm-4">
+    <div class="product-image-wrapper">
+        <div class="single-products">
+            <div class="productinfo text-center">
+                <?php if($product -> promoPrice()): ?>
+			    <div class="product-promotion"></div>
+                <?php endif; ?>
+                <a href="<?php echo e(url('shop/' . $product -> id)); ?>"><?php echo HTML::image($product -> image_normal); ?></a>
+                    <?php if($product -> price): ?>
+                    <?php if($product -> promoPrice()): ?>
+					<h2 class="price-product-old"><?php echo e($product -> priceNoVat()); ?></h2>
+					<h2 class="price-product-promo"><?php echo e($product -> promoNoVat()); ?></h2>
+                    <?php else: ?>
+                    <h2 class="price-product-old"></h2>
+                    <h2 class="price"> <?php echo e($product -> priceNoVat()); ?> </h2>
+                    <?php endif; ?>
+                    <?php else: ?>
+                    <h2 class="price-product-old"></h2>
+                    <h2 class="price"></h2>
+                    <?php endif; ?>
+                <p><?php echo e($product -> name); ?></p>
+                <?php if($product -> price): ?>
+                <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
+
+                <?php echo Form::hidden('product_id', $product -> id); ?>
+
+                <button type="submit" class="btn btn-default add-to-cart"> <i class="fa fa-shopping-cart"></i> <?php echo e(ucfirst(Lang::get('fields.shop.buy_btn'))); ?></button>
+                <?php echo Form::close(); ?>
+
+                <?php else: ?>
+                <a href="<?php echo e(url('shop/' . $product -> id)); ?>" class="btn btn-default add-to-cart"><i class="fa fa-info"></i> <?php echo e(ucfirst(Lang::get('fields.shop.info_btn'))); ?></a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

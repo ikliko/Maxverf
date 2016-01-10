@@ -1,0 +1,82 @@
+<?php $__env->startSection('container'); ?>
+<style>
+    .btn-elm-cart {
+        display: inline;
+    }
+</style>
+<section class="page-content">
+    <div class="container">
+        <table id="cart" class="table table-condensed">
+            <thead>
+            <tr>
+                <th style="width:50%"><?php echo e(ucfirst(Lang::get('fields.cart.product'))); ?></th>
+                <th style="width:10%"><?php echo e(ucfirst(Lang::get('fields.cart.size'))); ?></th>
+                <th style="width:10%"><?php echo e(ucfirst(Lang::get('fields.cart.color'))); ?></th>
+                <th style="width:10%"><?php echo e(ucfirst(Lang::get('fields.cart.price'))); ?></th>
+                <th style="width:8%"><?php echo e(ucfirst(Lang::get('fields.cart.qty'))); ?></th>
+                <th style="width:22%" class="text-center"><?php echo e(ucfirst(Lang::get('fields.cart.subtotal'))); ?></th>
+                <th style="width:10%"></th>
+            </tr>
+            </thead>
+
+            <?php foreach(Cart::instance('shopping') -> content() as $product): ?>
+            <tbody>
+            <tr>
+                <td data-th="Product">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 col-xs-12">
+                            <?php echo HTML::image($product -> options -> product -> image_normal, null, ['class' => 'img-responsive']);; ?>
+
+                        </div>
+                        <div class="col-md-10 col-sm-8 col-xs-12">
+                            <h4 class="nomargin"><?php echo e($product -> name); ?></h4>
+                            <p><?php echo $product -> options -> product -> intro; ?></p>
+                        </div>
+                    </div>
+                </td>
+                <td data-th="Maat: "><?php echo e($product -> options -> size ? $product -> options -> size -> size : 'no size'); ?></td>
+                <td data-th="Kleur: " style="background-color: <?php echo e($product -> options -> color ? $product -> options -> color -> color : ''); ?>;"><?php echo e($product -> options -> color ? '' : 'no color'); ?></td>
+                <td data-th="Prijs: " class="price"><?php echo e($product -> price . config('shop.currency.eur.symbol')); ?></td>
+                <td data-th="Aantal: ">
+                    <?php
+                    Form::macro('number', function($name, $steps, $value, $classes)
+                    {
+                        return '<input type="number" step="'. $steps . '" name="'. $name . '" value="' . $value . '" class="' . $classes . '"/>';
+                    });
+                    ?>
+                    <?php echo Form::open(['url' => '/cart/' .  $product -> rowid, 'method' => 'PUT']); ?>
+
+                    <?php echo Form::number('newQty', 1, $product -> qty, 'form-control text-center'); ?>
+
+                    <button type="submit" class="btn btn-default btn-sm btn-refresh-number"><i class="fa fa-refresh"></i></button>
+                    <?php echo Form::close(); ?>
+
+                </td>
+                <td data-th="Subtotaal: " class="text-center"><?php echo e(number_format($product -> subtotal, 2) . config('shop.currency.eur.symbol')); ?></td>
+                <td class="actions  text-center" data-th="">
+                    <?php echo Form::open(['url' => '/cart/' . $product -> rowid, 'method' => 'DELETE', 'class' => 'btn-elm-cart']); ?>
+
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                    <?php echo Form::close(); ?>
+
+                </td>
+            </tr>
+            </tbody>
+            <?php endforeach; ?>
+
+            <tfoot>
+            <tr class="visible-xs">
+                <td class="text-center"><strong><?php echo e(ucfirst(Lang::get('fields.cart.total'))); ?> <?php echo e(number_format(Cart::instance('shopping') -> total(), 2) . config('shop.currency.eur.symbol')); ?></strong></td>
+            </tr>
+            <tr>
+                <td><a href="<?php echo e(url('shop')); ?>" class="btn btn-cart2"><i class="fa fa-angle-left"></i> <?php echo e(ucfirst(Lang::get('fields.cart.back_btn'))); ?></a></td>
+                <td colspan="4" class="hidden-xs"></td>
+                <td class="hidden-xs text-center"><strong><?php echo e(ucfirst(Lang::get('fields.cart.total'))); ?> <?php echo e(number_format(Cart::instance('shopping') -> total(), 2) . config('shop.currency.eur.symbol')); ?></strong></td>
+                <td><a href="<?php echo e(url('payments/method')); ?>" class="btn btn-cart2"><?php echo e(ucfirst(Lang::get('fields.cart.continue_btn'))); ?> <i class="fa fa-angle-right"></i></a></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

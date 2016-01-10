@@ -1,0 +1,59 @@
+<?php $__env->startSection('page-wrapper'); ?>
+<style>
+    .clear {
+        clear: both;
+    }
+    .bold {
+        font-weight: bold;
+    }
+</style>
+<h2 class="text-center">Orders</h2>
+<div class="clear">&nbsp;</div>
+<?php if($allBtn): ?>
+<a href="<?php echo e(url('panel/Orders/all')); ?>" class="btn btn-primary btn-sm">All</a>
+<?php endif; ?>
+<?php if($pendingBtn): ?>
+<a href="<?php echo e(url('panel/Orders')); ?>" class="btn btn-default btn-sm">Pending</a>
+<?php endif; ?>
+<?php if($acceptedBtn): ?>
+<a href="<?php echo e(url('panel/Orders/accepted')); ?>" class="btn btn-success btn-sm">Accepted</a>
+<?php endif; ?>
+<?php if($declinedBtn): ?>
+<a href="<?php echo e(url('panel/Orders/declined')); ?>" class="btn btn-danger btn-sm">Declined</a>
+<?php endif; ?>
+<hr/>
+<?php if(isset($table) && count($table)): ?>
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Firm</th>
+        <th>Address</th>
+        <th>Comment</th>
+        <th>Price</th>
+        <th>Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($table as $order): ?>
+    <tr>
+        <td><?php echo e($order -> id); ?></td>
+        <td><?php echo e($order -> first_name); ?></td>
+        <td><?php echo e($order -> firm); ?></td>
+        <td><?php echo e($order -> address); ?></td>
+        <td><?php echo e($order -> comment); ?></td>
+        <td><?php echo e(number_format($order -> total(), 2) . ' ' . config('shop.currency.eur.symbol')); ?></td>
+        <td>
+            <a title="Show" href="<?php echo e(url('panel/Orders/' . $order -> id)); ?>"><span class="glyphicon glyphicon-list-alt"> </span></a>
+            <a class="text-warning" title="Modify" href="<?php echo e(url('panel/Orders/' . $order -> id . '/edit')); ?>"><span class="fa fa-edit"> </span></a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<?php else: ?>
+<label><?php echo e(isset($noRecordsMessage) ? $noRecordsMessage :   'No records'); ?></label>
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('panelViews::mainTemplate', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
