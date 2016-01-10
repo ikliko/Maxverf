@@ -14,8 +14,9 @@ use Input;
 use Auth;
 use Session;
 
-class OrderController extends Controller
-{
+class OrderController extends Controller {
+    private  $viewFolder = 'payments';
+
     private function orderPageData($current, $allBtn = false, $pendingBtn = false, $accBtn = false, $decBtn = false) {
         return [
             'current' => $current,
@@ -62,16 +63,22 @@ class OrderController extends Controller
         if(!Cart::instance('shopping') -> count()) return redirect() -> to('shop');
 
         $isLogged = Auth::check();
-        if($isLogged) Session::put('userType', 'authUser');
+        if($isLogged) Session::put('userRole', 'authUser');
 
-        $hasUserType = Session::get('userType', null);
-        if(!$hasUserType) {
-            //redirect to choose type
-        }
+        $hasUserType = Session::get('userRole', null);
+        if(!$hasUserType) return view($this -> viewFolder . '.role');
 
-        if($hasUserType === 'newUser') return redirect() -> to('register');
+        if($hasUserType === 'newUser') return view('register');
 
-        return view('payments.select');
+        return view($this -> viewFolder . '.method');
+    }
+
+    public function setRole(Request $request) {
+        if(!Cart::instance('shopping') -> count()) return redirect() -> to('shop');
+
+        Session::put('userRole', $request -> get('role'));
+
+        return redirect() -> back();
     }
 
     public function storeOnDelivery(Request $request) {

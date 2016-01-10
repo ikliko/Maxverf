@@ -26,6 +26,8 @@ Route::get('order/error', function () {
 Route::get('order/store', 'OrderController@saveOrder');
 Route::resource('order', 'OrderController');
 Route::get('payments/method', 'OrderController@selectPayment');
+Route::post('payments/method/role', 'OrderController@setRole');
+//Route::get('payments/method', 'OrderController@selectPayment');
 Route::get('conditional-terms', 'PageController@getTerms');
 Route::post('payments/method/ondelivery', 'OrderController@storeOnDelivery');
 Route::post('payments/method/ondelivery/firm', 'OrderController@storeOnDeliveryFirm');
