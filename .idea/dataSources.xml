@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3351426410">
+    <data-source source="LOCAL" name="MySQL - max_bouw_v1.0@localhost [2]" uuid="50b37ba5-5a75-41eb-b2bb-fb07d6e5eb7a">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/max_bouw_v1.0</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfdedfcbdfc3dfc4dfcbdfdadfcbdfd8df9adfe6dfea</user-password>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+      </driver-properties>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
