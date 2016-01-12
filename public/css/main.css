@@ -3185,3 +3185,35 @@ h2.title {
     overflow: hidden;
 
 }
+
+/*securiti in order*/
+
+#sing_form #top{
+
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 16px;
+    position: relative;
+
+}
+
+#sing_form #top .btn, #sing_form #bottom .btn{
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    
+}
+
+#sing_form #top span{
+    
+    background: #fff;
+    position: absolute;
+    line-height: 20px;
+    width: 20px;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -10px;
+    text-align: center;
+    color: #dcdcdc;
+    
+}
