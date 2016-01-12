@@ -54,10 +54,16 @@ Route::get('logout', 'UserController@logout');
 Route::get('panel/products/categories/new/general', 'ProductsCategoryController@create');
 Route::post('panel/products/categories/new/general', 'ProductsCategoryController@store');
 Route::get('panel/products/categories/new/translation', 'ProductsCategoryController@translation');
+//Route::get('panel/products/categories/{id}/general', 'ProductsCategoryController@create');
+//Route::post('panel/products/categories/{id}/general', 'ProductsCategoryController@store');
+//Route::get('panel/products/categories/{id}/translation', 'ProductsCategoryController@translation');
 Route::post('panel/products/categories/new/translation', 'ProductsCategoryController@storeTranslation');
 Route::resource('panel/products/categories', 'ProductsCategoryController');
 Route::get('panel/products/categories/create', function() {
     return redirect() -> to('panel/products/categories/new/general');
+});
+Route::get('panel/products/categories/{id}', function($id) {
+    return redirect() -> to('panel/products/categories/'. $id . '/general');
 });
 Route::get('panel/ProductsCategory/all', function() {
     return redirect() -> to('/panel/products/categories');

@@ -102,8 +102,28 @@ class ProductsCategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        if(!Auth::check()) return redirect() -> to('panel/login');
-
+        $categoryResponse = ProductsCategory::newRecord($request -> all());
+//        var_dump($categoryResponse);
+        switch($categoryResponse['type']) {
+            case 'Unauthenticated':
+                flash() -> error($categoryResponse['message']);
+                if($categoryResponse['redirect'] === 'back') return redirect() -> back();
+                return redirect() -> to($categoryResponse['redirect']);
+            case 'InvalidData':
+//                flash() -> error($categoryResponse['message']);
+                if($categoryResponse['redirect'] === 'back') return redirect() -> back() -> withErrors($categoryResponse['messages']) -> withInput();
+                return redirect() -> to($categoryResponse['redirect']);
+            case 'SavingException':
+                flash() -> error($categoryResponse['message']);
+                if($categoryResponse['redirect'] === 'back') return redirect() -> back();
+                return redirect() -> to($categoryResponse['redirect']);
+            case 'Success':
+                flash() -> success($categoryResponse['message']);
+                if($categoryResponse['redirect'] === 'back') return redirect() -> back();
+                return redirect() -> to($categoryResponse['redirect']);
+            default:
+                return redirect() -> to('panel/login');
+        }
     }
 
     /**

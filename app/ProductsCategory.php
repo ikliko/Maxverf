@@ -4,20 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Validator;
+use Auth;
 
 class ProductsCategory extends Model
 {
+
     protected $table = 'categories_products';
 
     public static $rules = [
-        'title' => 'required|between:3,255',
-        'parent_id' => ''
+//        'parent_id' => 'required'
     ];
 
     public static function messages($key = null) {
         $messages = [
-            'title.required' => 'Category title is required.',
-            'title.between' => 'Category title length must between 3, 255.',
+//            'parent_id.required' => 'Parent is required'
         ];
         if($key) return $messages[$key];
         return $messages;
@@ -47,27 +47,47 @@ class ProductsCategory extends Model
     }
 
     public static function newRecord($data) {
-        $category = new ProductsCategory();
-        $rules = self::rules;
+//        var_dump(Auth::check());
+//        die();
+        if(!Auth::check()) {
+            return [
+                'code' => 403,
+                'type' => 'Unauthenticated',
+                'message' => 'Log in please',
+                'redirect' => url('panel/login')
+            ];
+        }
+        $rules = self::$rules;
         $messages = self::messages();
         $validator = Validator::make($data, $rules, $messages);
         if($validator -> fails()) {
             return [
-                'error' => [
-                    'type' => 'invalidData',
-                    'responseMessages' => $validator
-                ],
-                'success' => 0
+                'code' => 400,
+                'type' => 'InvalidData',
+                'messages' => $validator,
+                'redirect' => 'back'
             ];
         }
 
-        $category -> title = $data['title'];
-        $category -> parent_id = $data['parent'];
-        $category -> save();
+        try{
+            $category = new ProductsCategory();
+            $category -> parent_id = $data['parent'];
+            $category -> save();
+        } catch(\Exception $exception) {
+            return [
+                'code' => 400,
+                'type' => 'SavingException',
+                'message' => $exception -> getMessage(),
+                'trace' => $exception -> getTraceAsString(),
+                'redirect' => 'back'
+            ];
+        }
 
         return [
-            'error' => 0,
-            'success' => 'You created category successfully',
+            'code' => 200,
+            'type' => 'Success',
+            'message' => 'You created category successfully',
+            'redirect' => url('panel/products/categories/' . $category -> id . '/general')
         ];
     }
 
