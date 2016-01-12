@@ -2,7 +2,7 @@
 @media (min-width: 1200px) {
 
     body {
-        padding-top: 218px;
+        padding-top: 207px;
     }
 
     .logo img {
@@ -12,10 +12,10 @@
     .stylish-input-group {
         margin-top: 40px;
     }
-	
-	.searchCustomResults { 
-		width:390px; 
-	}
+
+    .searchCustomResults {
+        width:390px;
+    }
 
     .shop-cart {
         margin-top: 45px;
@@ -55,11 +55,11 @@
         margin-left: 51px;
         padding: 10px 10px !important;
     }
-	
-	.margin-top {
-		margin-top: 50px;
-	}
-	
+
+    .margin-top {
+        margin-top: 30px;
+    }
+
     #product-slider .carousel .slider-img {
         margin-left: 50px;
     }
@@ -70,7 +70,7 @@
 @media (min-width: 992px) and (max-width: 1199px) {
 
     body {
-        padding-top: 218px;
+        padding-top: 207px;
     }
 
     .logo img {
@@ -80,10 +80,10 @@
     .stylish-input-group {
         margin-top: 40px;
     }
-	
-	.searchCustomResults { 
-		width:323px; 
-	}
+
+    .searchCustomResults {
+        width:323px;
+    }
 
     .shop-cart {
         margin-top: 45px;
@@ -138,11 +138,11 @@
         margin-left: 51px;
         padding: 10px 10px !important;
     }
-	
-	.margin-top {
-		margin-top: 50px;
-	}
-	
+
+    .margin-top {
+        margin-top: 30px;
+    }
+
     #product-slider .slide-desc {
         background-size: cover;
         background-image: url(../images/slide-desc.png);
@@ -159,7 +159,7 @@
     #product-slider .carousel .slider-img {
         margin-left: 50px;
     }
-	
+
 
 }
 
@@ -167,7 +167,7 @@
 @media (min-width: 768px) and (max-width: 991px) {
 
     body {
-        padding-top: 218px;
+        padding-top: 207px;
     }
 
     .logo img {
@@ -177,10 +177,10 @@
     .stylish-input-group {
         margin-top: 40px;
     }
-	
-	.searchCustomResults { 
-		width:250px;
-	}
+
+    .searchCustomResults {
+        width:250px;
+    }
 
     .shop-cart {
         margin-top: 45px;
@@ -220,12 +220,12 @@
         margin-left: 51px;
         padding: 10px 10px !important;
     }
-	
-	.margin-top {
-		margin-top: 30px;
-	}
-	
-	
+
+    .margin-top {
+        margin-top: 30px;
+    }
+
+
     #product-slider .slide-desc {
         background-size: cover;
         background-image: url(../images/slide-desc.png);
@@ -255,7 +255,7 @@
     #product-slider .carousel-content .sym {
         font-size: 18px;
     }
-	
+
 
 }
 
@@ -263,7 +263,7 @@
 @media (max-width: 767px) {
 
     body {
-        padding-top: 185px;
+        padding-top: 184px;
     }
 
     .navbar-hide-top-bar {
@@ -290,19 +290,19 @@
         margin-left: 15px;
         margin-bottom: 15px;
     }
-	
-	.searchCustomResults { 
-		width:95%;
-		left: 15px;
-        margin-top: 0px;
-	}
 
-	.searchCustomResults:after {
-	  left: 10px;
-	  right: auto !important;
-	}
-	
-	
+    .searchCustomResults {
+        width:95%;
+        left: 15px;
+        margin-top: 0px;
+    }
+
+    .searchCustomResults:after {
+        left: 10px;
+        right: auto !important;
+    }
+
+
     .navbar-collapse {
         padding: 0 !important;
         background: #00acff;
@@ -325,7 +325,7 @@
     .shop-cart {
         margin-top: -123px;
     }
-	
+
     .slide-desc {
         width: 100% !important;
         background-color: №fff !important;
@@ -344,9 +344,9 @@
         height: 370px !important;
     }
     #product-slider .carousel-content {
-		margin-top: 80px !important;
-	}
-	
+        margin-top: 80px !important;
+    }
+
     #product-slider .carousel-content h1 {
         font-size: 29px;
         background-color: rgba(0, 172, 255, 0.6) !important;
@@ -408,11 +408,26 @@
     table#cart tfoot td .btn {
         display: block;
     }
-	
-	.phone {
-		margin-left: 15px;
-		font-size: 13px;
-	}
+
+    .phone {
+        margin-left: 15px;
+        font-size: 13px;
+    }
+
+    /*login*/
+    #sing_form{
+
+        width: 100%;
+        margin-top: 10px;
+
+    }
+
+    /*fix bug whit 3 promo products at index*/
+    #promoProducta{
+
+        display: none;
+
+    }
 
 }
 
@@ -430,8 +445,8 @@
         margin-bottom: 10px;
         font-size: 11px;
     }
-	
-	
+
+
     #product-slider .carousel-content h1 {
         font-size: 24px;
     }
@@ -440,10 +455,7 @@
 
 @media (max-width: 383px){
 
-    body{
-
-        padding-top: 195px;
-
+    body {
+        padding-top: 194px;
     }
-
 }
