@@ -151,8 +151,8 @@ return [
         'incl' => 'prijs incl. vat',
         'excl' => 'prijs excl. vat',
         'promo' => [
-            'incl' => 'prijs promo excl VAT',
-            'excl' => 'prijs promo incl VAT',
+            'incl' => 'prijs promo incl VAT',
+            'excl' => 'prijs promo excl VAT',
         ]
     ],
 

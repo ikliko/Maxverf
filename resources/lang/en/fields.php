@@ -150,8 +150,8 @@ return [
         'incl' => 'price incl. vat',
         'excl' => 'price excl. vat',
         'promo' => [
-            'incl' => 'Price incl BTW',
-            'excl' => 'Price excl BTW',
+            'incl' => 'Promo price incl BTW',
+            'excl' => 'Promo price excl BTW',
         ]
     ],
 
