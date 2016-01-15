@@ -36,7 +36,7 @@
                 </td>
                 <td data-th="Maat: ">{{{ $product -> options -> size ? $product -> options -> size -> size : 'no size' }}}</td>
                 <td data-th="Kleur: " style="background-color: {{{ $product -> options -> color ? $product -> options -> color -> color : '' }}};">{{{ $product -> options -> color ? '' : 'no color' }}}</td>
-                <td data-th="Prijs: " class="price">{{{ $product -> price . config('shop.currency.eur.symbol') }}}</td>
+                <td data-th="Prijs: " class="price" style="color: #333;">{{{ $product -> price . config('shop.currency.eur.symbol') }}}</td>
                 <td data-th="Aantal: ">
                     <?php
                     Form::macro('number', function($name, $steps, $value, $classes)
