@@ -1,297 +1,245 @@
 <?php $__env->startSection('container'); ?>
-
-<?php if(isset($promo_products) && count($promo_products)): ?>
-<section id="product-slider">
-    <div class="carousel slide">
-        <ol class="carousel-indicators">
-            <?php $point = 0; ?>
-            <?php foreach($promo_products as $slide): ?>
-            <li data-target="#product-slider" data-slide-to="<?php echo e($point); ?>" <?php if(!$point): ?> class="active" <?php endif; ?>></li>
-            <?php $point++; ?>
-            <?php endforeach; ?>
-
-        </ol>
-        <div class="carousel-inner">
-            <?php $isFirst = 0; ?>
-            <?php foreach($promo_products as $slide): ?>
-			<!-- Слайд -->
-            <div class="item <?php if(!$isFirst): ?> active <?php endif; ?>" style="background: #000">
-                <?php $isFirst++; ?>
-                <!--<div class="slide-desc"></div>-->
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-sm-6 col-xs-12 animation animated-item">
-                            <div class="slider-img">
-                                <?php echo HTML::image(url($slide -> image_normal), 'product image', ['class' => 'img-responsive']); ?>
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="carousel-content">
-                                <h1 class="animation animated-item-1"><?php echo e($slide -> name); ?></h1>
-
-                                <?php if($slide -> price): ?>
-                                <h2 class="animation animated-item-2"><?php echo e($slide -> currentPriceNoVat()); ?> </h2>
-                                <?php endif; ?>
-                                <a class="btn-slide animation animated-item-3" href="<?php echo e(url('shop/' . $slide -> id)); ?>"><i class="fa fa-info"></i> <?php echo app('translator')->get('fields.slider.info_btn'); ?></a>
-                                <?php if($slide -> price): ?>
-                                <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
-
-                                <?php echo Form::hidden('product_id', $slide -> id); ?>
-
-                                <button type="submit" class="btn-slide animation animated-item-3">
-                                    <i class="fa fa-shopping-cart"></i> <?php echo app('translator')->get('fields.slider.buy_btn'); ?>
-                                </button>
-                                <?php echo Form::close(); ?>
-
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- Край на Слайд -->
-            <?php endforeach; ?>
-
-        </div>
-    </div>
-    <a class="prev hidden-xs" href="#product-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-    <a class="next hidden-xs" href="#product-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
-</section>
-<?php endif; ?>
-
-
-<section class="page-content">
-<div class="container">
-
-<?php if(0): ?>
-<div class="row hidden-xs">
     <?php if(isset($promo_products) && count($promo_products)): ?>
-    <?php foreach($promo_products as $promoProduct): ?>
-    <div class="col-sm-4">
-        <a href="<?php echo e(url('shop/' . $promoProduct -> id)); ?>">
-            <div class="product-col">
-                <div class="col-lg-9 col-md-10 col-sm-10 col-xs-10">
-                    <h2><?php echo e($promoProduct -> name); ?></h2>
+        <section id="product-slider">
+            <div class="carousel slide">
+                <ol class="carousel-indicators">
+                    <?php $point = 0; ?>
+                    <?php foreach($promo_products as $slide): ?>
+                        <li data-target="#product-slider" data-slide-to="<?php echo e($point); ?>" <?php if(!$point): ?> class="active" <?php endif; ?>></li>
+                        <?php $point++; ?>
+                    <?php endforeach; ?>
+                </ol>
+                <div class="carousel-inner">
+                    <?php $isFirst = 0; ?>
+                    <?php foreach($promo_products as $slide): ?>
+                            <!-- Слайд -->
+                    <div class="item <?php if(!$isFirst): ?> active <?php endif; ?>" style="background: #000">
+                        <?php $isFirst++; ?>
+                                <!--<div class="slide-desc"></div>-->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 animation animated-item">
+                                    <div class="slider-img">
+                                        <?php echo HTML::image(url($slide -> image_normal), 'product image', ['class' => 'img-responsive']); ?>
 
-                    <p class="price-product-promo"><?php echo e($promoProduct -> promoPrice()); ?></p>
-
-                    <a href="<?php echo e(url('shop/' . $promoProduct -> id)); ?>">
-                        <div class="btn btn-kopen"><i class="fa fa-info"></i> Details</div>
-                    </a>
-                    <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
-
-                    <?php echo Form::hidden('product_id', $promoProduct -> id); ?>
-
-                    <button type="submit" class="btn btn-kopen">
-                        <i class="fa fa-shopping-cart"></i> Kopen
-                    </button>
-                    <?php echo Form::close(); ?>
-
-                </div>
-
-                <div class="col-lg-3 col-md-2 col-sm-2 col-xs-2 no-padding">
-               
-                    <?php echo HTML::image(url($promoProduct -> image_normal), 'Product image');; ?>
-
-                </div>
-                <div class="clr"></div>
-            </div>
-        </a>
-    </div>
-    <?php endforeach; ?>
-    <?php endif; ?>
-</div>
-<?php endif; ?>
-
-
-<div class="row">
-
-    <?php if(isset($categories)): ?>
-    <div class="col-md-3 col-sm-4">
-        <div class="left-sidebar">
-            <h2><?php echo app('translator')->get('fields.categories.title'); ?></h2>
-
-            <?php echo $__env->make('sections.categories', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-        </div>
-    </div>
-    <?php endif; ?>
-
-    <div class="col-md-9 col-sm-8 col-xs-12 page-content">
-
-        <div class="box-head">
-            <p>Welkom bij Max Verfgroothandel!</p>
-        </div>
-
-        <div class="box-page">
-
-            <p>
-                <?php echo app('translator')->get('fields.index.text.0'); ?>
-                <br><br>
-                <?php echo app('translator')->get('fields.index.text.1'); ?>
-            </p>
-
-        </div>
-
-
-		<div class="row">
-		
-        <div class="category-tab shop-details-tab"><!--category-tab-->
-            <div class="col-sm-12">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#laatst" data-toggle="tab"> <?php echo app('translator')->get('fields.last_section.title'); ?></a></li>
-                    <li><a href="#promotie" data-toggle="tab"><?php echo app('translator')->get('fields.promotion_section.title'); ?></a></li>
-                </ul>
-            </div>
-            <div class="tab-content">
-
-                <div class="tab-pane fade active in" id="laatst">
-				  <div class="row">
-                    <?php if(isset($last)): ?>
-                    <?php foreach($last as $l_product): ?>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <?php echo HTML::image($l_product -> image_normal); ?>
-
-                                    <h2>
-                                        <?php if($l_product -> price): ?>
-                                        <?php echo e($l_product -> price); ?>€
-                                        <?php else: ?>
-                                        &nbsp;
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="carousel-content">
+                                        <h1 class="animation animated-item-1"><?php echo e($slide -> name); ?></h1>
+                                        <?php if($slide -> price): ?>
+                                            <h2 class="animation animated-item-2"><?php echo e($slide -> currentPriceNoVat()); ?> </h2>
                                         <?php endif; ?>
-                                    </h2>
+                                        <a class="btn-slide animation animated-item-3" href="<?php echo e(url('shop/' . $slide -> id)); ?>"><i class="fa fa-info"></i> <?php echo app('translator')->get('fields.slider.info_btn'); ?></a>
+                                        <?php if($slide -> price): ?>
+                                            <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
 
-                                    <p><?php echo e(substr($l_product -> name, 0, 33)); ?></p>
+                                            <?php echo Form::hidden('product_id', $slide -> id); ?>
 
-                                    <?php echo e($l_product -> price); ?>
+                                            <button type="submit" class="btn-slide animation animated-item-3">
+                                                <i class="fa fa-shopping-cart"></i> <?php echo app('translator')->get('fields.slider.buy_btn'); ?>
+                                            </button>
+                                            <?php echo Form::close(); ?>
 
-                                    <?php if($l_product -> price): ?>
-                                    <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
-
-                                    <?php echo Form::hidden('product_id', $l_product -> id); ?>
-
-                                    <button type="submit" class="btn btn-default add-to-cart">
-                                        <i class="fa fa-shopping-cart"></i> <?php echo app('translator')->get('fields.last_section.buy_btn'); ?>
-                                    </button>
-                                    <?php echo Form::close(); ?>
-
-                                    <?php else: ?>
-                                    <a href="<?php echo e(url('shop/' . $l_product -> id)); ?>" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-info"></i><?php echo app('translator')->get('fields.last_section.info_btn'); ?></a>
-                                    <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Край на Слайд -->
                     <?php endforeach; ?>
-                    <?php endif; ?>
-				   </div>
                 </div>
+            </div>
+            <a class="prev hidden-xs" href="#product-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+            <a class="next hidden-xs" href="#product-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
+        </section>
+    <?php endif; ?>
+    <section class="page-content">
+        <div class="container">
+            <?php if(0): ?>
+                <div class="row hidden-xs">
+                    <?php if(isset($promo_products) && count($promo_products)): ?>
+                        <?php foreach($promo_products as $promoProduct): ?>
+                            <div class="col-sm-4">
+                                <a href="<?php echo e(url('shop/' . $promoProduct -> id)); ?>">
+                                    <div class="product-col">
+                                        <div class="col-lg-9 col-md-10 col-sm-10 col-xs-10">
+                                            <h2><?php echo e($promoProduct -> name); ?></h2>
+                                            <p class="price-product-promo"><?php echo e($promoProduct -> promoPrice()); ?></p>
+                                            <a href="<?php echo e(url('shop/' . $promoProduct -> id)); ?>">
+                                                <div class="btn btn-kopen"><i class="fa fa-info"></i> Details</div>
+                                            </a>
+                                            <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
 
-                <div class="tab-pane fade" id="promotie">
-			
-				  <div class="row">
-                    <?php if(isset($promo_products)): ?>
-                    <?php foreach($promo_products as $promo_product): ?>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <a href="<?php echo e(url('shop/' . $promo_product -> id)); ?>">
-                                        <?php echo HTML::image($promo_product -> image_normal, 'Product image');; ?>
+                                            <?php echo Form::hidden('product_id', $promoProduct -> id); ?>
 
-                                    </a>
+                                            <button type="submit" class="btn btn-kopen">
+                                                <i class="fa fa-shopping-cart"></i> Kopen
+                                            </button>
+                                            <?php echo Form::close(); ?>
 
-                                    <h2 class="price">
-                                        <a href="<?php echo e(url('shop/' . $promo_product -> id)); ?>" style="color: #e01f1f; font-family: 'Lato', sans-serif;"><?php echo e($promo_product -> promoPrice()); ?></a>
-                                    </h2>
+                                        </div>
+                                        <div class="col-lg-3 col-md-2 col-sm-2 col-xs-2 no-padding">
+                                            <?php echo HTML::image(url($promoProduct -> image_normal), 'Product image');; ?>
 
-                                    <p><?php echo e($promo_product -> name); ?></p>
+                                        </div>
+                                        <div class="clr"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+            <div class="row">
+                <?php if(isset($categories)): ?>
+                    <div class="col-md-3 col-sm-4">
+                        <div class="left-sidebar">
+                            <h2><?php echo app('translator')->get('fields.categories.title'); ?></h2>
+                            <?php echo $__env->make('sections.categories', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="col-md-9 col-sm-8 col-xs-12 page-content">
+                    <div class="box-head">
+                        <p>Welkom bij Max Verfgroothandel!</p>
+                    </div>
+                    <div class="box-page">
+                        <p>
+                            <?php echo app('translator')->get('fields.index.text.0'); ?>
+                            <br><br>
+                            <?php echo app('translator')->get('fields.index.text.1'); ?>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="category-tab shop-details-tab"><!--category-tab-->
+                            <div class="col-sm-12">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#laatst" data-toggle="tab"> <?php echo app('translator')->get('fields.last_section.title'); ?></a></li>
+                                    <li><a href="#promotie" data-toggle="tab"><?php echo app('translator')->get('fields.promotion_section.title'); ?></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="laatst">
+                                    <div class="row">
+                                        <?php if(isset($last)): ?>
+                                            <?php foreach($last as $l_product): ?>
+                                                <div class="col-sm-4">
+                                                    <div class="product-image-wrapper">
+                                                        <div class="single-products">
+                                                            <div class="productinfo text-center">
+                                                                <?php echo HTML::image($l_product -> image_normal); ?>
 
-                                    <?php if($promo_product -> price): ?>
-                                    <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
+                                                                <h2>
+                                                                    <?php if($l_product -> price): ?>
+                                                                        <?php echo e($l_product -> price); ?>€
+                                                                    <?php else: ?>
+                                                                        &nbsp;
+                                                                    <?php endif; ?>
+                                                                </h2>
+                                                                <p><?php echo e(substr($l_product -> name, 0, 33)); ?></p>
+                                                                <?php if($l_product -> price): ?>
+                                                                    <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
 
-                                    <?php echo Form::hidden('product_id', $promo_product -> id); ?>
+                                                                    <?php echo Form::hidden('product_id', $l_product -> id); ?>
 
-                                    <button type="submit" class="btn btn-default add-to-cart">
-                                        <i class="fa fa-shopping-cart"></i> <?php echo app('translator')->get('fields.promotion_section.buy_btn'); ?>
-                                    </button>
-                                    <?php echo Form::close(); ?>
+                                                                    <button type="submit" class="btn btn-default add-to-cart">
+                                                                        <i class="fa fa-shopping-cart"></i> <?php echo app('translator')->get('fields.last_section.buy_btn'); ?>
+                                                                    </button>
+                                                                    <?php echo Form::close(); ?>
 
-                                    <?php else: ?>
-                                    <a href="<?php echo e(url('shop/' . $promo_product -> id)); ?>" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-info"></i><?php echo app('translator')->get('fields.promotion_section.info_btn'); ?></a>
-                                    <?php endif; ?>
+                                                                <?php else: ?>
+                                                                    <a href="<?php echo e(url('shop/' . $l_product -> id)); ?>" class="btn btn-default add-to-cart"><i
+                                                                                class="fa fa-info"></i><?php echo app('translator')->get('fields.last_section.info_btn'); ?></a>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="promotie">
+                                    <div class="row">
+                                        <?php if(isset($promo_products)): ?>
+                                            <?php foreach($promo_products as $promo_product): ?>
+                                                <div class="col-sm-4">
+                                                    <div class="product-image-wrapper">
+                                                        <div class="single-products">
+                                                            <div class="productinfo text-center">
+                                                                <a href="<?php echo e(url('shop/' . $promo_product -> id)); ?>">
+                                                                    <?php echo HTML::image($promo_product -> image_normal, 'Product image');; ?>
+
+                                                                </a>
+                                                                <h2 class="price">
+                                                                    <a href="<?php echo e(url('shop/' . $promo_product -> id)); ?>" style="color: #e01f1f; font-family: 'Lato', sans-serif;"><?php echo e($promo_product -> promoPrice()); ?></a>
+                                                                </h2>
+                                                                <p><?php echo e($promo_product -> name); ?></p>
+                                                                <?php if($promo_product -> price): ?>
+                                                                    <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
+
+                                                                    <?php echo Form::hidden('product_id', $promo_product -> id); ?>
+
+                                                                    <button type="submit" class="btn btn-default add-to-cart">
+                                                                        <i class="fa fa-shopping-cart"></i> <?php echo app('translator')->get('fields.promotion_section.buy_btn'); ?>
+                                                                    </button>
+                                                                    <?php echo Form::close(); ?>
+
+                                                                <?php else: ?>
+                                                                    <a href="<?php echo e(url('shop/' . $promo_product -> id)); ?>" class="btn btn-default add-to-cart"><i
+                                                                                class="fa fa-info"></i><?php echo app('translator')->get('fields.promotion_section.info_btn'); ?></a>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!--/category-tab-->
                     </div>
-                    <?php endforeach; ?>
-                    <?php endif; ?>
-                  </div>
                 </div>
+            </div>
+            <div id="promoProducta" class="row hidden-lg hidden-md hidden-sm">
+                <?php if(isset($promo_products) && count($promo_products)): ?>
+                    <?php foreach($promo_products as $promoProduct): ?>
+                        <div class="col-sm-4">
+                            <a href="<?php echo e(url('shop/' . $promoProduct -> id)); ?>">
+                                <div class="product-col">
+                                    <div class="col-lg-9 col-md-10 col-sm-10 col-xs-10">
+                                        <h2><?php echo e($promoProduct -> name); ?></h2>
+                                        <p class="price-product-promo"><?php echo e($promoProduct -> promoPrice()); ?></p>
+                                        <a href="<?php echo e(url('shop/' . $promoProduct -> id)); ?>">
+                                            <div class="btn btn-kopen"><i class="fa fa-info"></i> Details</div>
+                                        </a>
+                                        <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
 
+                                        <?php echo Form::hidden('product_id', $promoProduct -> id); ?>
 
+                                        <button type="submit" class="btn btn-kopen">
+                                            <i class="fa fa-shopping-cart"></i> Kopen
+                                        </button>
+                                        <?php echo Form::close(); ?>
+
+                                    </div>
+                                    <div class="col-lg-3 col-md-2 col-sm-2 col-xs-2 no-padding">
+                                        <?php echo HTML::image(url($promoProduct -> image_normal), 'Product image');; ?>
+
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
-        <!--/category-tab-->
-		
-		</div>
-
-
-    </div>
-
-
-</div>
-
-
-<div class="row hidden-lg hidden-md hidden-sm">
-    <?php if(isset($promo_products) && count($promo_products)): ?>
-    <?php foreach($promo_products as $promoProduct): ?>
-    <div class="col-sm-4">
-        <a href="<?php echo e(url('shop/' . $promoProduct -> id)); ?>">
-            <div class="product-col">
-                <div class="col-lg-9 col-md-10 col-sm-10 col-xs-10">
-                    <h2><?php echo e($promoProduct -> name); ?></h2>
-
-                    <p class="price-product-promo"><?php echo e($promoProduct -> promoPrice()); ?></p>
-
-                    <a href="<?php echo e(url('shop/' . $promoProduct -> id)); ?>">
-                        <div class="btn btn-kopen"><i class="fa fa-info"></i> Details</div>
-                    </a>
-                    <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline;']); ?>
-
-                    <?php echo Form::hidden('product_id', $promoProduct -> id); ?>
-
-                    <button type="submit" class="btn btn-kopen">
-                        <i class="fa fa-shopping-cart"></i> Kopen
-                    </button>
-                    <?php echo Form::close(); ?>
-
-                </div>
-
-                <div class="col-lg-3 col-md-2 col-sm-2 col-xs-2 no-padding">
-               
-                    <?php echo HTML::image(url($promoProduct -> image_normal), 'Product image');; ?>
-
-                </div>
-                <div class="clr"></div>
-            </div>
-        </a>
-    </div>
-    <?php endforeach; ?>
-    <?php endif; ?>
-</div>
-
-
-</div>
-</section>
+    </section>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -2,125 +2,102 @@
     <section class="page-content" ng-controller="sizeController">
         <div class="container">
             <div class="row">
-
-
                 <?php if(isset($categories)): ?>
                     <div class="col-md-3 col-sm-4">
                         <div class="left-sidebar">
                             <h2><?php echo e(strtoupper(Lang::get('fields.categories.title'))); ?></h2>
-
                             <?php echo $__env->make('sections.categories', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
                         </div>
                     </div>
                 <?php endif; ?>
-
                 <div class="col-md-9 col-sm-8 padding-right">
                     <div class="product-details"><!--product-details-->
                         <div class="col-md-5 col-sm-6">
-
                             <div class="view-product hidden-lg hidden-md">
                                 <?php echo HTML::image($product -> image_large); ?>
 
                             </div>
-
                             <div class="view-product hidden-sm hidden-xs">
                                 <?php echo HTML::image($product -> image_large, null, ['id' => 'zoom_02']); ?>
 
                             </div>
-
                         </div>
                         <div class="col-md-7 col-sm-6">
                             <div class="product-information"><!--/product-information-->
                                 <h2><?php echo e($product -> name); ?></h2>
-
-                    <span class="hidden">
-                        <span id="priceHolder"></span>
-                    </span>
+                                <span class="hidden">
+                                    <span id="priceHolder"></span>
+                                </span>
                                 <?php echo Form::open(['url' => 'cart']); ?>
 
                                 <?php echo Form::hidden('product_id', $product -> id); ?>
 
-
                                 <div class="col-md-7 col-sm-12 col-xs-12 no-padding">
-                        <span>
-                            <?php if(!$product -> price): ?>
-                                <?php
-                                $sizes = $product->sizes;
-                                $colors = $product->colors;
-                                ?>
-                                <?php if(count($sizes)): ?>
-                                    <label><?php echo e(ucfirst(Lang::get('fields.product.size'))); ?>:</label>
-                                    <select class="form-control" id="select" ng-model="size" ng-change="selectedSize(size)"
-                                            name="size_id">
-                                        <?php foreach($sizes as $size): ?>
-                                            <option value="<?php echo e($size -> id); ?>">
-                                                <?php if($size -> promoPrice(0) + 0): ?>
-                                                    <?php echo e($size -> size . ' ' . $size -> promoPrice()); ?>
+                                    <span>
+                                        <?php if(!$product -> price): ?>
+                                            <?php
+                                            $sizes = $product->sizes;
+                                            $colors = $product->colors;
+                                            ?>
+                                            <?php if(count($sizes)): ?>
+                                                <label><?php echo e(ucfirst(Lang::get('fields.product.size'))); ?>:</label>
+                                                <select class="form-control" id="select" ng-model="size" ng-change="selectedSize(size)"
+                                                        name="size_id">
+                                                    <?php foreach($sizes as $size): ?>
+                                                        <option value="<?php echo e($size -> id); ?>">
+                                                            <?php if($size -> promoPrice(0) + 0): ?>
+                                                                <?php echo e($size -> size . ' ' . $size -> promoPrice()); ?>
 
-                                                <?php else: ?>
-                                                    <?php echo e($size -> size . ' ' . number_format($size -> price / 1.21, 2) .
-                                                    config('shop.currency.eur.symbol')); ?>
+                                                            <?php else: ?>
+                                                                <?php echo e($size -> size . ' ' . number_format($size -> price / 1.21, 2) .
+                                                                config('shop.currency.eur.symbol')); ?>
 
-                                                <?php endif; ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php elseif(count($colors)): ?>
-                                    <label><?php echo e(ucfirst(Lang::get('fields.product.color'))); ?>:</label>
-                                    <select class="form-control" id="select" name="color_id">
-                                        <?php foreach($colors as $color): ?>
-                                            <option><?php echo e($color -> color); ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php endif; ?>
-                            <?php else: ?>
-
-                                <font <?php if($product -> promoPrice()): ?> style="text-decoration: line-through" <?php endif; ?> >
-                                    <?php echo e(strtoupper(Lang::get('fields.product.excl'))); ?>: <?php echo e($product -> priceNoVat()); ?> <br/>
-                                    <?php echo e(strtoupper(Lang::get('fields.product.incl'))); ?>: <?php echo e($product -> price . config('shop.currency.eur.symbol')); ?> <br/>
-                                </font>
-
-                                <?php if($product -> promoPrice()): ?>
-                                    <span class="promotion-price"><?php echo e(strtoupper(Lang::get('fields.product.promo.incl'))); ?>: <?php echo e($product -> promoNoVat()); ?></span>
-                                    <span class="promotion-price"><?php echo e(strtoupper(Lang::get('fields.product.promo.excl'))); ?>: <?php echo e($product -> promoPrice()); ?></span>
-                                <?php endif; ?>
-
-                            <?php endif; ?>
-
-                            <div id="colors"></div>
-
-                        </span>
+                                                            <?php endif; ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            <?php elseif(count($colors)): ?>
+                                                <label><?php echo e(ucfirst(Lang::get('fields.product.color'))); ?>:</label>
+                                                <select class="form-control" id="select" name="color_id">
+                                                    <?php foreach($colors as $color): ?>
+                                                        <option><?php echo e($color -> color); ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <font <?php if($product -> promoPrice()): ?> style="text-decoration: line-through" <?php endif; ?> >
+                                                <?php echo e(strtoupper(Lang::get('fields.product.excl'))); ?>: <?php echo e($product -> priceNoVat()); ?> <br/>
+                                                <?php echo e(strtoupper(Lang::get('fields.product.incl'))); ?>: <?php echo e($product -> price . config('shop.currency.eur.symbol')); ?> <br/>
+                                            </font>
+                                            <?php if($product -> promoPrice()): ?>
+                                                <span class="promotion-price"><?php echo e(strtoupper(Lang::get('fields.product.promo.excl'))); ?>: <?php echo e($product -> promoNoVat()); ?></span>
+                                                <span class="promotion-price"><?php echo e(strtoupper(Lang::get('fields.product.promo.incl'))); ?>: <?php echo e($product -> promoPrice()); ?></span>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                        <div id="colors"></div>
+                                    </span>
                                 </div>
-
                                 <div class="col-md-5 col-sm-12 col-xs-12 no-padding">
-						 <span>
-							<label><?php echo e(ucfirst(Lang::get('fields.product.qty'))); ?>:</label>
-							<input type="text" value="1" name="qty"/>
-							<button type="submit" class="btn add-to-cart2">
-                                <i class="fa fa-shopping-cart"></i>
-                                <?php echo e(strtoupper(Lang::get('fields.product.buy_btn'))); ?>
+                                     <span>
+                                        <label><?php echo e(ucfirst(Lang::get('fields.product.qty'))); ?>:</label>
+                                        <input type="text" value="1" name="qty"/>
+                                        <button type="submit" class="btn add-to-cart2">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <?php echo e(strtoupper(Lang::get('fields.product.buy_btn'))); ?>
 
-                            </button>
-						  </span>
+                                        </button>
+                                      </span>
                                 </div>
-
-
                                 <div style="clear: both;"></div>
                                 <p><b><?php echo e(ucfirst(Lang::get('fields.product.description'))); ?>:</b> <?php echo $product -> description; ?></p>
                                 <?php echo Form::close(); ?>
-
 
                             </div>
                             <!--/product-information-->
                         </div>
                     </div>
                     <!--/product-details-->
-
-
                 </div>
-
-
                 <div class="row">
                     <div class="category-tab shop-details-tab col-xs-12"><!--category-tab-->
                         <div class="col-sm-12">
@@ -130,8 +107,6 @@
                             </ul>
                         </div>
                         <div class="tab-content">
-
-
                             <div class="tab-pane fade active in" id="laatst">
                                 <div class="row">
                                     <?php foreach($last as $l_product): ?>
@@ -143,7 +118,6 @@
                                                             <?php echo HTML::image($l_product -> image_normal); ?>
 
                                                         </a>
-
                                                         <h2>
                                                             <?php if($l_product -> price): ?>
                                                                 <?php echo e($l_product -> price . config('shop.currency.eur.symbol')); ?>
@@ -152,7 +126,6 @@
                                                                 &nbsp;
                                                             <?php endif; ?>
                                                         </h2>
-
                                                         <p><?php echo e(substr($l_product -> name, 0, 33)); ?></p>
                                                         <?php if($l_product -> price): ?>
                                                             <a href="#" class="btn btn-default add-to-cart"><i
@@ -170,10 +143,8 @@
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-
                             <div class="tab-pane fade" id="promotie">
                                 <div class="row">
-
                                     <?php if(isset($promo_products)): ?>
                                         <?php foreach($promo_products as $promo_product): ?>
                                             <div class="col-sm-3">
@@ -184,14 +155,11 @@
                                                                 <?php echo HTML::image($promo_product -> image_normal, 'Product image');; ?>
 
                                                             </a>
-
                                                             <h2 class="price">
                                                                 <a href="<?php echo e(url('shop/' . $promo_product -> id)); ?>"
                                                                    style="color: #e01f1f; font-family: 'Lato', sans-serif;"><?php echo e($promo_product -> promoPrice()); ?></a>
                                                             </h2>
-
                                                             <p><?php echo e($promo_product -> name); ?></p>
-
                                                             <?php echo Form::open(['url' => 'cart', 'style' => 'display:inline']);; ?>
 
                                                             <?php echo Form::hidden('product_id', $promo_product -> id);; ?>
@@ -207,17 +175,11 @@
                                             </div>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
-
-
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </section>
