@@ -8,13 +8,9 @@
         <div class="header_top"><!--header_top-->
             <div class="container">
                 <div class="row">
-
                     <div class="pull-left phone hidden-xs">
-					   
-					   <i class="fa fa-phone"></i> + 31 75 615 2379, <i class="fa fa-mobile"></i> +316 11 53 03 53
-					
+					   <i class="fa fa-phone"></i> + 31 75 615 2379, <i class="fa fa-mobile"></i> +316 24 13 00 10
                     </div>
-					
 					<div class="dropdown lang-dropdown">
 					  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{{ Session::get('lang', 'nl') }}}
 					  <span class="fa fa-angle-down"></span></button>
@@ -22,13 +18,11 @@
 						<li><a href="{{{ url('lang/nl') }}}">NL</a></li>
 						<li><a href="{{{ url('lang/en') }}}">EN</a></li>
 					  </ul>
-					</div>	
-					
+					</div>
 					<ul class="user-buttons">
 					   <li><a href="{{{ url('login') }}}">@lang('fields.login.title')</a></li>
 					   <li><a href="{{{ url('register') }}}">@lang('fields.register.title')</a></li>
 					</ul>
-	
                 </div>
             </div>
         </div>
@@ -37,13 +31,11 @@
         <div class="header-middle"><!--header-middle-->
             <div class="container">
                 <div class="row">
-
                     <div class="col-sm-4">
                         <div class="logo pull-left">
                             <a href="{{{ url() }}}"><img src="{{{ url(config('panel.logo')) }}}" alt=""/></a>
                         </div>
                     </div>
-
                     <div class="col-sm-4 col-xs-12 no-padding" ng-controller="searchController">
                         <form>
                             <div class="input-group stylish-input-group">
@@ -54,7 +46,6 @@
 								</span>
                             </div>
                         </form>
-
                         <div class="searchCustomResults" ng-show="hasResults && searchInput">
                             <ul>
                                 <li ng-repeat="result in searchResults.data">
@@ -65,31 +56,22 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="col-sm-3 col-xs-5 pull-right no-padding shop-cart">
-
                         <div class="col-lg-5 col-md-5 col-xs-6  pull-right no-padding text-center">
                             <p>@lang('fields.cart.title'): <a href="{{{ url('cart') }}}" >{{{ number_format(Cart::instance('shopping') -> total(), 2) . (Session::get('lang', 'nl') == 'nl' ?  config('shop.currency.eur.symbol') : config('shop.currency.usd.symbol')) }}}</a></p>
                         </div>
-
                         <div class="col-lg-2 col-md-3 col-xs-6  pull-right no-padding shoping-cart">
                             <a href="{{{ url('cart') }}}" class="btn btn-cart">
                                 <div class="cart-numer">{{{ Cart::instance('shopping') -> count() }}}</div>
                             </a>
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
         </div>
         <!--/header-middle-->
-
         <div class="header-bottom" style="position: relative;"><!--header-bottom-->
             <div class="container">
-                
-				
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse"
                                     data-target=".navbar-collapse">
@@ -121,7 +103,6 @@
                                 </li>
                             </ul>
                         </div>
-                  
             </div>
         </div>
         <!--/header-bottom-->
@@ -129,42 +110,31 @@
     <!--/header-->
     @yield('container')
     <footer id="footer"><!--Footer-->
-
         <div class="footer-top">
             <div class="container">
-
                 <div class="col-md-16 col-sm-2 col-xs-6">
                     <img src="{{{ asset('images/parthners/anza.png') }}}"/>
                 </div>
-
                 <div class="col-md-16 col-sm-2 col-xs-6">
                     <img src="{{{ asset('images/parthners/ceresit.png') }}}"/>
                 </div>
-
                 <div class="col-md-16 col-sm-2 col-xs-6">
                     <img src="{{{ asset('images/parthners/deko.png') }}}"/>
                 </div>
-
                 <div class="col-md-16 col-sm-2 col-xs-6">
                     <img src="{{{ asset('images/parthners/expert.png') }}}"/>
                 </div>
-
                 <div class="col-md-16 col-sm-2 col-xs-6">
                     <img src="{{{ asset('images/parthners/knauf.png') }}}"/>
                 </div>
-
                 <div class="col-md-16 col-sm-2 col-xs-6">
                     <img src="{{{ asset('images/parthners/leko.png') }}}"/>
                 </div>
-				
                 <div class="col-md-16 col-sm-2 col-xs-6">
                     <img src="{{{ asset('images/parthners/orgachim.png') }}}"/>
                 </div>
-
             </div>
         </div>
-
-
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
@@ -173,7 +143,6 @@
                 </div>
             </div>
         </div>
-
     </footer>
     <!--/Footer-->
 </div>
